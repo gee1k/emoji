@@ -1,6 +1,16 @@
-# emoji
+<p align="center"><h1>Emoji Sheet</h1></p>
+<p align="center">
+  <sub>Made with ❤︎ by
+    <a href="https://github.com/16Free">@ Svend</a>
+  </sub>
+</p>
 
-> A Vue.js project
+<p align="center">
+<a href="https://github.com/16Free/emoji"><img src="https://img.shields.io/badge/build-passing-green.svg" alt="Build"></a>
+<a href="https://github.com/16Free/emoji"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+</p>
+
+</div>
 
 ## Build Setup
 
@@ -18,4 +28,8 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) Svend

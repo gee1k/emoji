@@ -15,7 +15,7 @@
           <!-- <li v-for="e in value" :title="e.name" v-show="e.isShow"> -->
             <div>
               {{ e['char'] }}
-              <input :data-keyword="e.keywords.join(' ')" class="emoji-code" :id="'emoji-'+k" :value="':' + k + ':'" readonly>
+              <input :data-keyword="e.keywords.join(' ')" class="emoji-code" :id="'emoji-'+k" :value="':' + k + ':'"  :size="(':' + k + ':').length" readonly>
             </div>
           </li>
         </ul>
@@ -103,20 +103,20 @@ a {
 ul {
   display: table;
   padding: 0 0 1em 1.5em;
-  font-family: monospace;
 }
 
 li {
   list-style: none;
   float: left;
-  width: 330px;
-  margin-bottom: .5em;
+  width: 340px;
+  margin-left: 20px;
   cursor: pointer;
 
 }
 
 .continer {
-  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .header {
@@ -161,14 +161,18 @@ li {
 }
 
 .emoji{
-  width: 22px !important;
-  height: 22px !important;
+  width: 18px !important;
+  height: 18px !important;
   position: relative;
-  top: 9px;
+  top: 6px;
 }
 
 .emoji-category {
   margin: 20px 0;
+}
+
+.emoji-item> div {
+  white-space: nowrap;
 }
 
 .emoji-item:hover > div {
@@ -185,6 +189,7 @@ li {
   padding: 10px 10px 10px 0;
   user-select: text;
   -webkit-rtl-ordering: logical;
+  font-family: monospace;
 }
 
 div.copied::after {
@@ -194,6 +199,12 @@ div.copied::after {
   animation-duration: 1.8s;
   animation-name: fadeOut;
   animation-iteration-count: 1;
+  font-family: "Helvetica Neue",helvetica,arial,sans-serif;
+  margin-left: -15px;
+  padding: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  user-select: none;
 }
 
 .footer {
