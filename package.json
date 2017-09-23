@@ -1,9 +1,16 @@
 {
   "name": "emoji",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Emoji Sheet",
   "author": "Svend <svend.jin@qq.com>",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/16Free/emoji.git"
+  },
+  "keywords": [
+    "emoji"
+  ],
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
