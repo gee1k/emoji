@@ -1,5 +1,5 @@
 <p align="center"><h1>Emoji Sheet</h1></p>
-:heart: some emoji. Go to http://emoji.svend.cc/
+:heart: some emoji. Go to [http://emoji.svend.cc/](http://emoji.svend.cc/)
 <p align="center">
   <sub>Made with ❤︎ by
     <a href="https://github.com/16Free">@ Svend</a>
