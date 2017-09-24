@@ -27,7 +27,7 @@
       </section>
     </div>
     <div class="footer">
-      <span>Made with <a href="//github.com/16free">@Svend</a></span>
+      <span>Made with <a href="//github.com/16free">@Svend</a>  -|- pv:<span id="busuanzi_value_site_pv"></span>   uv:<span id="busuanzi_value_site_uv"></span></span>
     </div>
 
   </div>
@@ -107,6 +107,11 @@ export default {
       window.twemoji.parse(document.body)
     }
     document.head.appendChild(twemojiScript)
+
+    var busuanziScript = document.createElement('script')
+    busuanziScript.src = '//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js'
+    busuanziScript.async = 'async'
+    document.head.appendChild(busuanziScript)
   }
 }
 </script>
