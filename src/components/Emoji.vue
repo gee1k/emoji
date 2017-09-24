@@ -1,7 +1,7 @@
 <template>
   <div class="continer">
     <div class="header">
-      <h1 class="title">Emoji Sheet</h1>
+      <h1 class="title">Get Emoji</h1>
       <input type="text" class="searchIpt" placeholder="search" v-model="keyword">
       <span class="emoji-type-label">Emoji Type:</span>
       <emoji-switch class="emoji-type-switch" label="Emoji Type" onLabel="Code" offLabel="Char" :checked.sync="isEmojiType"></emoji-switch>
