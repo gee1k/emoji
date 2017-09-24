@@ -14,6 +14,8 @@
 
 :heart: Get Emoji. Go to [http://emoji.svend.cc/](http://emoji.svend.cc/)
 
+![emoji gif](http://ody0ct4r0.bkt.clouddn.com/emoji.gif)
+
 ## Build Setup
 
 ``` bash
