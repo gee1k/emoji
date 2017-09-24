@@ -1,8 +1,7 @@
-<p align="center"><h1>Emoji Sheet</h1></p>
-:heart: some emoji. Go to <a href="http://emoji.svend.cc/">http://emoji.svend.cc/</a>
+<p align="center"><img style="max-width:140px;" src="http://ody0ct4r0.bkt.clouddn.com/magic%20book.svg" alt="Emoji Sheet"></p>
 <p align="center">
-  <sub>Made with ❤︎ by
-    <a href="https://github.com/16Free">@ Svend</a>
+  <sub>Made with
+    <a href="https://github.com/16Free">@Svend</a>
   </sub>
 </p>
 
@@ -12,6 +11,8 @@
 </p>
 
 </div>
+
+:heart: Get Emoji. Go to [http://emoji.svend.cc/](http://emoji.svend.cc/)
 
 ## Build Setup
 
