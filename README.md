@@ -15,7 +15,7 @@
 - 网站地址：[http://emoji.svend.cc/](http://emoji.svend.cc/)
 - Github地址：[https://github.com/16Free/emoji](https://github.com/16Free/emoji)
 
-![emoji gif](https://user-gold-cdn.xitu.io/2017/9/24/14c44722c7425ee8ba4be9780dd1a9db)
+![emoji gif](http://ody0ct4r0.bkt.clouddn.com/emoji.gif)
 
 ### Chinese
 >可以根据 Emoji 的名称，关键字查找Emoji符号，一键复制到自己的应用或网站使用。
