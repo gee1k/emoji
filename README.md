@@ -1,4 +1,4 @@
-<p align="center"><img width="140px" src="http://ody0ct4r0.bkt.clouddn.com/magic%20book.svg" alt="Emoji Sheet"></p>
+<p align="center"><img width="140px" src="https://user-gold-cdn.xitu.io/2017/9/24/956d6a7d931745b2c0c4bef069f18d8b" alt="Emoji Sheet"></p>
 <p align="center">
   <sub>Made with
     <a href="https://github.com/16Free">@Svend</a>
@@ -12,9 +12,21 @@
 
 </div>
 
-:heart: Get Emoji. Go to [http://emoji.svend.cc/](http://emoji.svend.cc/)
+- 网站地址：[http://emoji.svend.cc/](http://emoji.svend.cc/)
+- Github地址：[https://github.com/16Free/emoji](https://github.com/16Free/emoji)
 
-![emoji gif](http://ody0ct4r0.bkt.clouddn.com/emoji.gif)
+![emoji gif](https://user-gold-cdn.xitu.io/2017/9/24/14c44722c7425ee8ba4be9780dd1a9db)
+
+### Chinese
+>可以根据 Emoji 的名称，关键字查找Emoji符号，一键复制到自己的应用或网站使用。
+Emoji Code 仅在支持 Emoji Code 的应用或网站上可以使用，如 Github。
+Emoji Char 在任何支持 emoji 字体的地方都可以使用。不过只是作为字体展示，而不是 Emoji 图片。
+
+### English
+>You can find Emoji symbols based on the name of the Emoji, keyword, and key to your application or website. 
+Emoji Code is available only on applications or web sites that support Emoji Code, such as Github. 
+Emoji Char is available in any place that supports Emoji fonts. But just as a font display, not a Emoji picture.
+
 
 ## Build Setup
 
