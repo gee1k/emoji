@@ -40,7 +40,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   })
 })
 
-const CNAMEPATH = config.build.assetsRoot + 'CNAME'
+const CNAMEPATH = config.build.assetsRoot + '/CNAME'
 fs.exists(CNAMEPATH,function(exists){
   if(exists){
       return;
