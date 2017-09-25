@@ -27,6 +27,9 @@ Emoji Char 在任何支持 emoji 字体的地方都可以使用。不过只是�
 Emoji Code is available only on applications or web sites that support Emoji Code, such as Github.
 Emoji Char is available in any place that supports Emoji fonts. But just as a font display, not a Emoji picture.
 
+## TODO List
+- [x] 支持移动端（Support for mobile access）
+- [ ] more...
 
 ## Build Setup
 
