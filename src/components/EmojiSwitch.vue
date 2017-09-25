@@ -1,16 +1,20 @@
 <template>
   <div class="switch">
     <input class="switch-checkbox" :id="switchId" type="checkbox" @click="clickSwitch" :checked="checked">
-    <label class="switch-label" :for="switchId">
+    <label class="switch-label" :for="switchId" :id="switchId + 'label'">
         <span class="switch-inner" :data-on="onLabel" :data-off="offLabel"></span>
         <span class="switch-switch"></span>
     </label>
+    <span class="switch-title">{{ title }}</span>
   </div>
 </template>
 <script>
 export default {
   name: 'emoji-switch',
   props: {
+    title: {
+      type: String
+    },
     onLabel: {
       type: String,
       required: true
@@ -115,6 +119,13 @@ export default {
 
 .switch-checkbox:checked + .switch-label .switch-switch {
     right: 0px;
+}
+
+.switch-title {
+  position: absolute;
+  top: 50%;
+  left: -120%;
+  transform: translateY(-50%);
 }
 </style>
 

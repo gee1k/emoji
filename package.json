@@ -18,6 +18,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "clipboard": "^1.7.1",
     "emojilib": "^2.2.9",
     "vue": "^2.4.2"
   },

@@ -2,25 +2,29 @@
   <div class="continer">
     <div class="header">
       <h1 class="title">Get Emoji</h1>
-      <input type="text" class="searchIpt" placeholder="search" v-model="keyword">
-      <span class="emoji-type-label">Emoji Type:</span>
-      <emoji-switch class="emoji-type-switch" label="Emoji Type" onLabel="Code" offLabel="Char" :checked.sync="isEmojiType"></emoji-switch>
+      <input type="text" class="searchIpt" placeholder="search" v-model="newKeyword">
+        <emoji-switch class="emoji-type-switch" title="Emoji Type:" onLabel="Code" offLabel="Char" :checked.sync="isEmojiType"></emoji-switch>
+    </div>
+    <div class="info">
+      <sub>Emoji Type 为 Code 时仅在支持 Emoji Code 的应用或网站上可以使用，如 Github。</sub><br>
+      <sub>Emoji Type 为 Char 时在任何支持 Emoji 字体的地方都可以使用。不过只是作为字体展示，而不是 Emoji 图片。</sub><br><br>
+      <sub>Emoji Type for Code is available only on applications or web sites that support Emoji Code, such as Github.</sub><br>
+      <sub>Emoji Type is available for use in any place that supports Emoji fonts when Char is used. But just as a font display, not a Emoji picture.</sub><br><br>
+      <strong>点击表情复制符号代码。（ Click the Emoji code and it will be copied to your clipboard.）</strong>
+    </div>
+    <div class="info-mobile">
+      <strong>点击表情复制符号代码。（ Click the Emoji code and it will be copied to your clipboard.）</strong>
     </div>
     <div class="content">
-      <div class="info">
-        <sub>Emoji Type 为 Code 时仅在支持 Emoji Code 的应用或网站上可以使用，如 Github。(Emoji Type for Code is available only on applications or web sites that support Emoji Code, such as Github.)</sub><br>
-        <sub>Emoji Type 为 Char 时在任何支持 emoji 字体的地方都可以使用。不过只是作为字体展示，而不是 Emoji 图片。(Emoji Type is available for use in any place that supports Emoji fonts when Char is used. But just as a font display, not a Emoji picture.)</sub><br>
-        <strong>点击表情复制符号代码。（ Click the emoji code and it will be copied to your clipboard.）</strong>
-      </div>
       <section v-for="(value, key) in categories" v-show="checkCategoryShow(key)">
         <h2 class="emoji-category">{{ key }}</h2>
         <ul>
           <li v-for="(e, k) in value" :title="e.name" v-show="checkEmojiShow(e, k, key)" @click="copyEmoji('emoji-'+k)" class="emoji-item"
-          :style="{width: isEmojiType ? '340px' : '60px'}">
+          :style="{width: isEmojiType ? '340px' : '60px'}" :class="{char: !isEmojiType}">
           <!-- <li v-for="e in value" :title="e.name" v-show="e.isShow"> -->
             <div>
               <span :style="{display: isEmojiType ? 'inline-block' : 'none'}">{{ e['char'] }}</span>
-              <input :data-keyword="e.keywords.join(' ')" class="emoji-code" :style="{fontSize: isEmojiType ? 'inherit' : '22px'}" :id="'emoji-'+k" :value="isEmojiType ? (':' + k + ':') : e['char']"  :size="isEmojiType ? (':' + k + ':').length : e['char'].length" readonly>
+              <span :data-keyword="e.keywords.join(' ')" class="emoji-code" :style="{fontSize: isEmojiType ? 'inherit' : '22px'}" :id="'emoji-'+k" :data-clipboard-text="isEmojiType ? (':' + k + ':') : e['char']" >{{ isEmojiType ? (':' + k + ':') : e['char'] }}</span>
             </div>
           </li>
         </ul>
@@ -34,9 +38,11 @@
 </template>
 <script>
 import EmojiSwitch from './EmojiSwitch'
+var Clipboard = require('clipboard')
 var emoji = require('emojilib')
 var emojis = Object.assign({}, emoji.lib)
 console.log(emoji)
+
 var categories = {}
 for (let k in emojis) {
   var e = emojis[k]
@@ -46,26 +52,37 @@ for (let k in emojis) {
 }
 delete categories['_custom']
 
+function isPC () {
+  var userAgentInfo = navigator.userAgent
+  var Agents = ['Android', 'iPhone',
+    'SymbianOS', 'Windows Phone',
+    'iPad', 'iPod']
+  var flag = true
+  for (var v = 0; v < Agents.length; v++) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = false
+      break
+    }
+  }
+  return flag
+}
+
 export default {
   name: 'Emoji',
   data () {
     return {
-      isEmojiType: true,
+      isEmojiType: isPC(),
       categories: categories,
-      keyword: ''
+      newKeyword: '',
+      keyword: '',
+      keywordChangeTimer: null,
+      twemojiInited: false
     }
   },
   components: {
     EmojiSwitch
   },
   methods: {
-    emojiTypeSwitch () {
-      if (this.emojiType === 'code') {
-        this.emojiType = 'char'
-      } else {
-        this.emojiType = 'code'
-      }
-    },
     checkEmojiShow (e, emojiId, categoryId) {
       let keyword = this.keyword && this.keyword.trim()
       if (!keyword) {
@@ -91,27 +108,57 @@ export default {
       return false
     },
     copyEmoji (emojiCodeId) {
-      let node = document.querySelector('#' + emojiCodeId)
-      node.select()
-      document.execCommand('copy')
-      node.parentNode.classList = ['copied']
-      setTimeout(function () {
-        node.parentNode.classList = []
-      }, 1800)
+      let clipboard = new Clipboard('#' + emojiCodeId)
+      clipboard.on('success', function (e) {
+        e.clearSelection()
+        console.info('Copied:', e.text)
+        e.trigger.parentNode.classList = ['copied']
+        setTimeout(function () {
+          e.trigger.parentNode.classList = []
+        }, 1800)
+      })
+      clipboard.on('error', function (e) {
+        console.error('Action:', e.action)
+        console.error('Trigger:', e.trigger)
+      })
+    },
+    parse2Twemoji () {
+      if (this.twemojiInited) {
+        return
+      }
+      var twemojiScript = document.createElement('script')
+      twemojiScript.src = '//twemoji.maxcdn.com/2/twemoji.min.js?2.2.3'
+      twemojiScript.onload = function () {
+        window.twemoji.parse(document.body)
+      }
+      document.head.appendChild(twemojiScript)
+      this.twemojiInited = true
     }
   },
   mounted () {
-    var twemojiScript = document.createElement('script')
-    twemojiScript.src = '//twemoji.maxcdn.com/2/twemoji.min.js?2.2.3'
-    twemojiScript.onload = function () {
-      window.twemoji.parse(document.body)
+    if (this.isEmojiType) {
+      this.parse2Twemoji()
     }
-    document.head.appendChild(twemojiScript)
 
     var busuanziScript = document.createElement('script')
     busuanziScript.src = '//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js'
     busuanziScript.async = 'async'
     document.head.appendChild(busuanziScript)
+  },
+  watch: {
+    isEmojiType (newVal) {
+      this.parse2Twemoji()
+    },
+    newKeyword (newVal) {
+      if (this.keywordChangeTimer) {
+        clearTimeout(this.keywordChangeTimer)
+      }
+      this.keywordChangeTimer = setTimeout(() => {
+        this.keyword = newVal
+        console.log(this.keyword)
+        clearTimeout(this.keywordChangeTimer)
+      }, 200)
+    }
   }
 }
 </script>
@@ -131,6 +178,7 @@ li {
   list-style: none;
   float: left;
   margin-left: 20px;
+  margin-bottom: 8px;
   cursor: pointer;
 
 }
@@ -171,6 +219,13 @@ li {
   box-shadow: 0px 0px 10px 0px #3b99fc;
 }
 
+.emoji-type {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
 .emoji-type-switch {
   position: absolute;
   top: 50%;
@@ -178,21 +233,64 @@ li {
   transform: translateY(-50%);
 }
 
-.emoji-type-label {
-  position: absolute;
-  top: 50%;
-  right: 200px;
-  transform: translateY(-50%);
-}
-
-.info {
+.info,
+.info-mobile {
   margin-top: 8px;
-  height: 80px;
-  padding: 0 1em;
+  padding: 1em;
   color: #6a737d;
   border-left: 0.25em solid #6a737d;
   background-color: #ccc;
   font-size: 12px;
+}
+
+.info-mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  li.char {
+    margin-left: 0;
+    width: 40px !important;
+  }
+
+  .info{
+    display: none;
+  }
+
+  .info-mobile {
+    display: block;
+  }
+
+  .header {
+    overflow: hidden;
+    position: relative;
+    height: initial;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding: 10px 0 7px 0;
+    text-align: center;
+  }
+
+  .header>.searchIpt {
+    position: initial;
+    left: initial;
+    top: initial;
+    transform: initial;
+    width: initial;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    height: 30px;
+    font: inherit;
+    margin: 5px auto;
+    padding: 5px 15px;
+  }
+
+  .emoji-type-switch {
+    position: relative;
+    top: initial;
+    text-align: initial;
+    left: 66%;
+    transform: translateX(-50%);
+  }
 }
 
 .emoji{
@@ -215,15 +313,10 @@ li {
 }
 
 .emoji-code {
-  appearance: none;
-  -webkit-appearance: none;
-  border: 0;
-  box-shadow: none;
-  background-color: transparent;
   cursor: pointer;
-  padding: 10px 10px 10px 0;
-  user-select: text;
-  -webkit-rtl-ordering: logical;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
   font-family: monospace;
 }
 
@@ -235,9 +328,8 @@ div.copied::after {
   animation-name: fadeOut;
   animation-iteration-count: 1;
   font-family: "Helvetica Neue",helvetica,arial,sans-serif;
-  margin-left: -15px;
-  padding: 4px;
-  font-size: 11px;
+  padding-left: 6px;
+  font-size: 12px;
   font-weight: bold;
   user-select: none;
 }
