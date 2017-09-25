@@ -9,11 +9,10 @@
 <a href="https://github.com/16Free/emoji"><img src="https://img.shields.io/badge/build-passing-green.svg" alt="Build"></a>
 <a href="https://github.com/16Free/emoji"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
-
+<p align="center"><a href="http://emoji.svend.cc/">Website</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://github.com/16Free/emoji">Github</a></p>
+<p align="center"><img src="http://ody0ct4r0.bkt.clouddn.com/emoji-qrcode.png"></img></p>
 </div>
 
-- 网站地址：[http://emoji.svend.cc/](http://emoji.svend.cc/)
-- Github地址：[https://github.com/16Free/emoji](https://github.com/16Free/emoji)
 
 ![emoji gif](http://ody0ct4r0.bkt.clouddn.com/emoji.gif?new)
 
