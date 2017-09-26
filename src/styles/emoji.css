@@ -18,13 +18,13 @@ li {
   list-style: none;
   float: left;
   width: 230px;
-  margin-left: 10px;
-  margin-bottom: 8px;
+  margin-left: 10px !important;
+  margin-bottom: 8px !important;
   cursor: pointer;
 }
 
 .continer {
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
   margin-top: 60px;
 }
