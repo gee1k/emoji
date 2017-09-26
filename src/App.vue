@@ -17,16 +17,14 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  background-color: #f9f9f9;
+}
+
 #app {
-  font-family: andalemono, menlo, monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   margin: 0 auto;
   padding: 0 40px;
-}
-* {
-  margin: 0;
-  padding: 0;
 }
 @media (max-width: 767px){
   .fork-on-github {
