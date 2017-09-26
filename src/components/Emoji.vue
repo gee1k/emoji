@@ -32,7 +32,7 @@
       </section>
     </div>
     <div class="footer">
-      <span>Made with <a href="//github.com/16free">@Svend</a>  -|- pv:<span id="busuanzi_value_site_pv"></span>   uv:<span id="busuanzi_value_site_uv"></span></span>
+      <span>Made with <a href="//github.com/gee1k">@Svend</a>  -|- pv:<span id="busuanzi_value_site_pv"></span>   uv:<span id="busuanzi_value_site_uv"></span></span>
     </div>
 
   </div>

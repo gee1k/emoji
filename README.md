@@ -1,15 +1,15 @@
 <p align="center"><img width="140px" src="https://user-gold-cdn.xitu.io/2017/9/24/956d6a7d931745b2c0c4bef069f18d8b" alt="Emoji Sheet"></p>
 <p align="center">
   <sub>Made with
-    <a href="https://github.com/16Free">@Svend</a>
+    <a href="https://github.com/gee1k">@Svend</a>
   </sub>
 </p>
 
 <p align="center">
-<a href="https://github.com/16Free/emoji"><img src="https://img.shields.io/badge/build-passing-green.svg" alt="Build"></a>
-<a href="https://github.com/16Free/emoji"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+<a href="https://github.com/gee1k/emoji"><img src="https://img.shields.io/badge/build-passing-green.svg" alt="Build"></a>
+<a href="https://github.com/gee1k/emoji"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
-<p align="center"><a href="http://emoji.svend.cc/">Website</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://github.com/16Free/emoji">Github</a></p>
+<p align="center"><a href="http://emoji.svend.cc/">Website</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://github.com/gee1k/emoji">Github</a></p>
 <p align="center"><img src="http://ody0ct4r0.bkt.clouddn.com/emoji-qrcode.png"></img></p>
 </div>
 
