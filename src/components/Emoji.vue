@@ -69,10 +69,14 @@ function isPC () {
       break
     }
   }
-  if (!flag) {
-    require('@/styles/emoji.mobile.css')
-  }
   return flag
+}
+
+if (!isPC()) {
+  console.log('require mobile css')
+  require.ensure([], function(require){
+    require('@/styles/emoji.mobile.css')
+  })
 }
 
 export default {
