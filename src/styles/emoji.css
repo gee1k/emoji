@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  background-color: #f9f9f9;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -24,7 +29,7 @@ li {
 }
 
 .continer {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   margin-top: 60px;
 }
@@ -32,7 +37,6 @@ li {
 .header {
   overflow: hidden;
   position: relative;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .2); */
   padding: 10px 0 7px 0;
   text-align: center;
 }
@@ -41,10 +45,9 @@ li {
   font-size: 30px;
   font-weight: 300;
   position: relative;
-  /* font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif; */
   padding: 0 20px;
-    color: #989898;
-    text-shadow: 0 1px 1px #fff;
+  color: #989898;
+  text-shadow: 0 1px 1px #fff;
 }
 
 .header>.searchIpt {
@@ -105,9 +108,4 @@ li {
   0% {opacity: 1;}
   70% {opacity: .7;}
   100% {opacity: 0;}
-}
-
-
-@media (max-width: 768px) {
-  
 }

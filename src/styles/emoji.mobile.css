@@ -9,11 +9,14 @@ li {
   overflow: hidden;
   position: relative;
   height: initial;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .2); */
   padding: 10px 0 7px 0;
   text-align: center;
 }
 
 .header>.searchIpt {
   width: initial;
+}
+
+.fork-on-github {
+  width: 100px;
 }

@@ -10,7 +10,7 @@
         Copy emoji name
       </p>
 
-      <i-input size="large"  placeholder="search" v-model="keyword" autofocus class="searchIpt">
+      <i-input size="large"  placeholder="search" v-model="keyword" @on-change="keywordChange" autofocus class="searchIpt">
         <i-button type="text" slot="append" @click="resetKeyword">RESET</i-button>
       </i-input>
 
@@ -21,11 +21,11 @@
         <h2 class="emoji-category">{{ key }}</h2>
         <ul>
           <!-- <li v-for="(e, k) in value" :title="e.name" v-show="checkEmojiShow(e, k, key)" @click="copyEmoji('emoji-'+k)" class="emoji-item"> -->
-          <li v-for="(e, k) in value" :title="e.name" v-show="e.matched" @click="copyEmoji('emoji-'+k)" class="emoji-item">
+          <li v-for="(e, k) in value" :title="e.name" v-show="e.matched" class="emoji-item" :data-clipboard-text="copyEmojiName ? (':' + k + ':') : e['char']">
           <!-- <li v-for="e in value" :title="e.name" v-show="e.isShow"> -->
             <div>
               <span v-show="isPc">{{ e['char'] }}</span>
-              <span :data-keyword="e.keywords.join(' ')" class="emoji-code" :id="'emoji-'+k" :data-clipboard-text="copyEmojiName ? (':' + k + ':') : e['char']" >{{ isPc ? (':' + k + ':') : e['char'] }}</span>
+              <span :data-keyword="e.keywords.join(' ')" class="emoji-code">{{ isPc ? (':' + k + ':') : e['char'] }}</span>
             </div>
           </li>
         </ul>
@@ -39,11 +39,11 @@
 </template>
 <script>
 var Clipboard = require('clipboard')
-import Switch from 'iview/src/components/switch'
-import Alert from 'iview/src/components/alert'
-import Input from 'iview/src/components/input'
-import Button from 'iview/src/components/Button'
-import Message from 'iview/src/components/message'
+// import Switch from 'iview/src/components/switch'
+// import Alert from 'iview/src/components/alert'
+// import Input from 'iview/src/components/input'
+// import Button from 'iview/src/components/Button'
+// import Message from 'iview/src/components/message'
 var emoji = require('emojilib')
 var emojis = Object.assign({}, emoji.lib)
 console.log(emoji)
@@ -74,7 +74,7 @@ function isPC () {
 
 if (!isPC()) {
   console.log('require mobile css')
-  require.ensure([], function(require){
+  require.ensure([], function (require) {
     require('@/styles/emoji.mobile.css')
   })
 }
@@ -90,15 +90,20 @@ export default {
       keywordChangeTimer: null
     }
   },
-  components: {
-    'i-switch': Switch,
-    Alert,
-    'i-input': Input,
-    'i-button': Button
-  },
   methods: {
+    keywordChange (e) {
+      if (this.keywordChangeTimer) {
+        clearTimeout(this.keywordChangeTimer)
+      }
+      this.keywordChangeTimer = setTimeout(() => {
+        this.keyword = e.target.value
+        this.checkEmojiShow()
+        this.keywordChangeTimer = null
+      }, 500)
+    },
     resetKeyword () {
       this.keyword = ''
+      this.checkEmojiShow()
     },
     checkEmojiShow () {
       let keyword = this.keyword && this.keyword.trim()
@@ -128,18 +133,18 @@ export default {
       }
       return false
     },
-    copyEmoji (emojiCodeId) {
-      let clipboard = new Clipboard('#' + emojiCodeId)
+    initClipboard () {
+      let self = this
+      let clipboard = new Clipboard('.emoji-item')
       clipboard.on('success', function (e) {
         console.info('Copied:', e.text)
-        Message.success('Copied: ' + e.text)
+        self.$Message.success('Copied: ' + e.text)
         e.clearSelection()
-        clipboard.destroy()
       })
       clipboard.on('error', function (e) {
         console.error('Action:', e.action)
         console.error('Trigger:', e.trigger)
-        clipboard.destroy()
+        self.$Message.error('您的浏览器不支持自动复制。（Your browser does not support automatic replication.）')
       })
     },
     parse2Twemoji () {
@@ -155,23 +160,11 @@ export default {
     if (this.isPc) {
       this.parse2Twemoji()
     }
-
+    this.initClipboard()
     var busuanziScript = document.createElement('script')
     busuanziScript.src = '//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js'
     busuanziScript.async = 'async'
     document.head.appendChild(busuanziScript)
-  },
-  watch: {
-    keyword (newVal) {
-      if (this.keywordChangeTimer) {
-        clearTimeout(this.keywordChangeTimer)
-      }
-      this.keywordChangeTimer = setTimeout(() => {
-        console.log(this.keyword)
-        this.checkEmojiShow()
-        clearTimeout(this.keywordChangeTimer)
-      }, 200)
-    }
   }
 }
 </script>
