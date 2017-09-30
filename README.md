@@ -1,7 +1,7 @@
 <p align="center"><img width="140px" src="https://user-gold-cdn.xitu.io/2017/9/24/956d6a7d931745b2c0c4bef069f18d8b" alt="Emoji Sheet"></p>
 <p align="center">
   <sub>Made with
-    <a href="https://github.com/gee1k">@Svend</a>
+    <a href="//svend.cc">@Svend</a>
   </sub>
 </p>
 
