@@ -36,6 +36,9 @@ npm run build --report
 - [x] 支持移动端（Support for mobile access）
 - [ ] more...
 
+## Powered by emoji
+
+* [muan/emojilib](https://github.com/muan/emojilib)
 
 ## License
 
