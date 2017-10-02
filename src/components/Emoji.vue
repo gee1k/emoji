@@ -114,7 +114,7 @@ export default {
           if (!keyword) {
             emoji.matched = true
           }
-          let matchKeyWords = emoji.keywords.concat([ck])
+          let matchKeyWords = emoji.keywords.concat([ck, emoji.char])
           if (matchKeyWords.join(' ').indexOf(keyword) > -1) {
             emoji.matched = true
           } else {
