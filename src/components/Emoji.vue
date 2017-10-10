@@ -44,9 +44,10 @@ var Clipboard = require('clipboard')
 // import Input from 'iview/src/components/input'
 // import Button from 'iview/src/components/Button'
 // import Message from 'iview/src/components/message'
-var emoji = require('emojilib')
-var emojis = Object.assign({}, emoji.lib)
-console.log(emoji)
+// var emoji = require('emojilib')
+// var emojis = Object.assign({}, emoji.lib)
+import emojis from '@/assets/emojis.json'
+console.log(emojis)
 
 var categories = {}
 for (let k in emojis) {

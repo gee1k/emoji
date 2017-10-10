@@ -34,6 +34,7 @@ npm run build --report
 
 ## TODO List
 - [x] 支持移动端（Support for mobile access）
+- [x] 支持中文搜索（Support Chinese search）
 - [ ] more...
 
 ## Powered by emoji
